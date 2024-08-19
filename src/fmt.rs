@@ -1,23 +1,11 @@
-#[cfg(feature = "std")]
-use std::{
-    fmt,
-    fmt::Write,
-    ops::{Deref, DerefMut}
-};
-#[cfg(not(feature = "std"))]
-use core::{
-    fmt,
-    fmt::Write,
-    ops::{Deref, DerefMut}
-};
-#[cfg(not(feature = "std"))]
-use rtt_target::{rprint as print, rprintln as println};
+use crate::std::*;
 use tracing_core::LevelFilter;
 use tracing_core::{span, Event, Metadata, field, Level};
 
 
 #[derive(Debug)]
 pub struct SubscriberBuilder<F = LevelFilter> {
+    #[allow(dead_code)]
     filter: F,
 }
 
@@ -46,7 +34,7 @@ fn debug_info<T: AsRef<[u8]> + fmt::Display>(metadata: &Metadata<'_>, msg: T) {
     let file = metadata.file().unwrap_or_default();
     let line = metadata.line().unwrap_or_default();
 
-    println!("{level_str} [{file}:{line}] {}", msg);
+    println!("{} [{}:{}] {}", level_str, file, line, msg);
 }
 
 
@@ -64,6 +52,7 @@ impl Subscriber {
 
 impl tracing_core::Subscriber for Subscriber {
     fn enabled(&self, _metadata: &Metadata<'_>) -> bool {
+        // metadata.level() <= self.filter
         true
     }
 
@@ -136,6 +125,7 @@ impl field::Visit for DebugVisitor {
 }
 
 
+#[allow(dead_code)]
 pub fn fmt() -> SubscriberBuilder {
     SubscriberBuilder::default()
 }

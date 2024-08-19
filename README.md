@@ -6,8 +6,9 @@
 
 ## Features
 
-- [x] xxxx
-- [ ] xxxx
+- [x] OpenOCD RTT
+- [ ] Embedded Time
+- [ ] Filter
 
 ## Usage
 
@@ -22,7 +23,7 @@ or:
 
 ```toml
 [dependencies]
-tracing-rtt = "0.1.0"
+tracing-rtt = { version = "0.1.0", default-features = false }
 ```
 
 > main.rs
