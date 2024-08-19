@@ -24,3 +24,17 @@ or:
 [dependencies]
 tracing-rtt = "0.1.0"
 ```
+
+> main.rs
+
+```rust
+fn main() {
+    tracing_rtt::init();
+
+    tracing::error!("jankincai");
+    tracing::warn!("jankincai");
+    tracing::info!("jankincai");
+    tracing::debug!("jankincai");
+    tracing::trace!("jankincai");
+}
+```
