@@ -1,0 +1,49 @@
+[package]
+name = "tracing-rtt"
+version = "0.1.0"
+edition = "2021"
+authors = [
+    "jankincai <jankincai12@gmail.com>",
+]
+description = "The is a tracing-rtt embedded library."
+repository = "https://github.com/caizhengxin/tracing-rtt"
+homepage = "https://github.com/caizhengxin/tracing-rtt"
+readme = "README.md"
+# https://crates.io/category_slugs
+categories = [
+    "command-line-utilities",
+    "development-tools",
+    "no_std",
+]
+keywords = [
+    "tracing-rtt",
+]
+license = "MIT OR Apache-2.0"
+include = [
+    "src/*",
+    "benches/*",
+    "examples/*",
+    "Cargo.toml",
+    "LICENSE*",
+    "README.md",
+]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+default = ["std"]
+std = []
+
+[dependencies]
+rtt-target = "0.5"
+tracing-core = { version = "0", default-features = false }
+tracing = { version = "0.1", default-features = false }
+# time = { version = "0.3", default-features = false }
+
+[dev-dependencies]
+tracing = { version = "0.1" }
+tracing-subscriber = { version = "0.3", features = ["env-filter", "time", "local-time"] }
+
+[profile.dev]
+opt-level = 1
+overflow-checks = false
