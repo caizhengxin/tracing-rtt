@@ -12,7 +12,6 @@ readme = "README.md"
 # https://crates.io/category_slugs
 categories = [
     "development-tools",
-    "no_std",
 ]
 keywords = [
     "tracing-rtt",
