@@ -3,7 +3,7 @@
 
 
 use cortex_m_rt::entry;
-use panic_halt as _;
+use panic_tracing_rtt as _;
 use cortex_m::Peripherals;
 use stm32f4xx_hal::{
     pac,
