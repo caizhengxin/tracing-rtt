@@ -1,6 +1,4 @@
-# canbls-embedded
-
-- STM32F407
+# embedded-rtt
 
 ## build
 
