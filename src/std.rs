@@ -10,7 +10,9 @@ pub use core::{
     fmt::Write,
     ops::{Deref, DerefMut},
 };
-#[cfg(not(feature = "std"))]
+#[cfg(all(feature = "heapless", not(feature = "alloc")))]
+pub use heapless::String;
+#[cfg(all(feature = "alloc", not(feature = "heapless")))]
 pub use alloc::{
     string::String,
 };

@@ -1,5 +1,5 @@
 [package]
-name = "tracing-rtt"
+name = "panic-tracing-rtt"
 version = "0.1.0"
 edition = "2021"
 authors = [
@@ -9,13 +9,13 @@ description = "The is a tracing-rtt embedded library."
 repository = "https://github.com/caizhengxin/tracing-rtt"
 homepage = "https://github.com/caizhengxin/tracing-rtt"
 readme = "README.md"
-# https://crates.io/category_slugs
 categories = [
     "development-tools",
     "no_std",
 ]
 keywords = [
     "tracing-rtt",
+    "pnaic-tracing-rtt",
 ]
 license = "MIT OR Apache-2.0"
 include = [
@@ -29,29 +29,7 @@ include = [
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[features]
-default = ["std"]
-std = []
-alloc = []
-heapless = []
-
-[workspace]
-members = [
-    "panic-tracing-rtt",
-    "examples/embedded-rtt",
-]
-
 [dependencies]
-rtt-target = "0.5"
-tracing-core = { version = "0", default-features = false }
+cortex-m = "0.7"
+tracing-rtt = { path = "../", version = "0", default-features = false }
 tracing = { version = "0.1", default-features = false }
-heapless = "0.8"
-# time = { version = "0.3", default-features = false }
-
-[dev-dependencies]
-tracing = { version = "0.1" }
-tracing-subscriber = { version = "0.3", features = ["env-filter", "time", "local-time"] }
-
-[profile.dev]
-opt-level = 1
-overflow-checks = false

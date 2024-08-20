@@ -16,14 +16,18 @@
 
 ```toml
 [dependencies]
-tracing-rtt = { git = "https://github.com/caizhengxin/tracing-rtt.git" }
+tracing = { version = "0.1", default-features = false }
+# tracing-rtt = { git = "https://github.com/caizhengxin/tracing-rtt.git", default-features = false, features = ["alloc"] }
+tracing-rtt = { git = "https://github.com/caizhengxin/tracing-rtt.git", default-features = false, features = ["heapless"] }
 ```
 
 or:
 
 ```toml
 [dependencies]
-tracing-rtt = { version = "0.1.0", default-features = false }
+tracing = { version = "0.1", default-features = false }
+tracing-rtt = { version = "0.1.0", default-features = false, features = ["heapless"] }
+# tracing-rtt = { version = "0.1.0", default-features = false, features = ["alloc"] }
 ```
 
 > main.rs

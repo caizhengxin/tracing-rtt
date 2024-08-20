@@ -3,6 +3,10 @@ use tracing_core::LevelFilter;
 use tracing_core::{span, Event, Metadata, field, Level};
 
 
+#[cfg(feature = "heapless")]
+const BUFFER_SIZE: usize = 200;
+
+
 #[derive(Debug)]
 pub struct SubscriberBuilder<F = LevelFilter> {
     #[allow(dead_code)]
@@ -92,6 +96,9 @@ impl tracing_core::Subscriber for Subscriber {
 
 
 pub struct DebugVisitor {
+    #[cfg(feature = "heapless")]
+    buffer: String<BUFFER_SIZE>,
+    #[cfg(any(feature = "alloc", feature = "std"))]
     buffer: String,
 }
 
@@ -104,7 +111,11 @@ impl DebugVisitor {
 
 
 impl Deref for DebugVisitor {
+    #[cfg(feature = "heapless")]
+    type Target = String<BUFFER_SIZE>;
+    #[cfg(any(feature = "alloc", feature = "std"))]
     type Target = String;
+
     fn deref(&self) -> &Self::Target {
         &self.buffer
     }
