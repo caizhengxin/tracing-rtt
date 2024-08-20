@@ -11,7 +11,6 @@ homepage = "https://github.com/caizhengxin/tracing-rtt"
 readme = "README.md"
 categories = [
     "development-tools",
-    "no_std",
 ]
 keywords = [
     "tracing-rtt",
@@ -31,5 +30,5 @@ include = [
 
 [dependencies]
 cortex-m = "0.7"
-tracing-rtt = { path = "../", version = "0", default-features = false }
+tracing-rtt = { path = "../", version = "0", default-features = false, features = ["heapless"] }
 tracing = { version = "0.1", default-features = false }
