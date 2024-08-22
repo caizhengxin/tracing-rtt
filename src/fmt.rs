@@ -49,6 +49,9 @@ pub struct Subscriber {
 
 impl Subscriber {
     pub fn new() -> Self {
+        #[cfg(not(feature = "std"))]
+        rtt_target::rtt_init_print!();
+
         Self {  }
     }
 }
